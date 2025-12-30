@@ -251,10 +251,10 @@ function CategoryCard({ label, icons, onClick, active }) {
     <div
       onClick={onClick}
       className={`premium-card ${active ? "active" : ""}`}
-      style={{ height: "90px", maxWidth: "180px" }}
+      style={{ height: "130px", maxWidth: "130px" }}
     >
       {/* ICON ONLY */}
-      <div className="flex items-center justify-center h-full">
+      <div className="flex items-center justify-center">
         <img
           src={icons}
           alt={label}
