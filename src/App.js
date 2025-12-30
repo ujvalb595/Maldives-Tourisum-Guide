@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MapContainer, Marker, ImageOverlay } from "react-leaflet";
-import L from "leaflet";
+import L, { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 /* ================= IMAGE MAP CONFIG ================= */
@@ -26,27 +26,32 @@ const CATEGORIES = [
   {
     id: "hotel",
     label: "Hotels",
-    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+    //image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
+    icons: "/resort.png",
   },
   {
     id: "spa",
     label: "Spa & Wellness",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874",
+    //image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874",
+    icons: "/meditation.png",
   },
   {
     id: "hospital",
     label: "Hospitals",
-    image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3",
+    //image: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3",
+    icons: "/image.png",
   },
   {
     id: "pub",
     label: "Pubs & Bars",
-    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+    //image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b",
+    icons: "/cocktail.png",
   },
   {
     id: "airport",
     label: "Airports",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    //image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+    icons: "/departures.png",
   },
 ];
 
@@ -228,7 +233,7 @@ export default function App() {
               <CategoryCard
                 key={cat.id}
                 label={cat.label}
-                image={cat.image}
+                icons={cat.icons}
                 active={category === cat.id}
                 onClick={() => setCategory(cat.id)}
               />
@@ -241,20 +246,25 @@ export default function App() {
 }
 
 /* ================= CATEGORY CARD ================= */
-function CategoryCard({ label, image, onClick, active }) {
+function CategoryCard({ label, icons, onClick, active }) {
   return (
     <div
       onClick={onClick}
       className={`premium-card ${active ? "active" : ""}`}
       style={{ height: "90px", maxWidth: "180px" }}
     >
-      <div className="premium-card-image">
-        <img src={image} alt={label} />
+      {/* ICON ONLY */}
+      <div className="flex items-center justify-center h-full">
+        <img
+          src={icons}
+          alt={label}
+          className="category-icon"
+          draggable="false"
+        />
       </div>
-      <div className="premium-card-overlay" />
-      <div className="premium-card-content h-full flex items-end">
-        <h3 className="premium-card-title">{label}</h3>
-      </div>
+
+      {/* LABEL */}
+      <h3 className="premium-card-title bottom-2 left-3 mt-1">{label}</h3>
     </div>
   );
 }
