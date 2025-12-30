@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapContainer, Marker, Popup, ImageOverlay } from "react-leaflet";
+import { MapContainer, Marker, ImageOverlay } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -11,14 +11,14 @@ const IMAGE_BOUNDS = [
 
 /* ================= ATOLLS ================= */
 const ATOLLS = [
-  { id: "north-male", name: "North Malé Atoll", pos: [210, 1450] }, //8.
-  { id: "south-male", name: "South Malé Atoll", pos: [180, 1770] }, //6.
-  { id: "ari", name: "Ari Atoll", pos: [510, 1150] }, //4.
-  { id: "baa", name: "Baa Atoll", pos: [300, 1000] }, //7.
-  { id: "raa", name: "Raa Atoll", pos: [440, 1350] }, //5.
-  { id: "dhaalu", name: "Dhaalu Atoll", pos: [460, 660] }, //3.
-  { id: "laamu", name: "Laamu Atoll", pos: [660, 860] }, //2.
-  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [780, 450] }, // 1.
+  { id: "north-male", name: "North Malé Atoll", pos: [210, 1450] },
+  { id: "south-male", name: "South Malé Atoll", pos: [180, 1770] },
+  { id: "ari", name: "Ari Atoll", pos: [510, 1150] },
+  { id: "baa", name: "Baa Atoll", pos: [300, 1000] },
+  { id: "raa", name: "Raa Atoll", pos: [440, 1350] },
+  { id: "dhaalu", name: "Dhaalu Atoll", pos: [460, 660] },
+  { id: "laamu", name: "Laamu Atoll", pos: [660, 860] },
+  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [780, 450] },
 ];
 
 /* ================= CATEGORIES ================= */
@@ -26,8 +26,7 @@ const CATEGORIES = [
   {
     id: "hotel",
     label: "Hotels",
-    image:
-      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=870&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
   },
   {
     id: "spa",
@@ -54,29 +53,22 @@ const CATEGORIES = [
 /* ================= ICONS ================= */
 function createCircleIcon(iconUrl) {
   return L.divIcon({
-    className: "", // IMPORTANT: prevent default styles
+    className: "",
     html: `
       <div style="
-        width: 42px;
-        height: 42px;
-        background: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 6px 14px rgba(0,0,0,0.25);
-        border: 1px solid rgba(0,0,0,0.1);
+        width:42px;height:42px;
+        background:white;
+        border-radius:50%;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 6px 14px rgba(0,0,0,0.25);
       ">
-        <img src="${iconUrl}" style="
-          width: 22px;
-          height: 22px;
-          object-fit: contain;
-        " />
+        <img src="${iconUrl}" style="width:22px;height:22px;" />
       </div>
     `,
     iconSize: [42, 42],
-    iconAnchor: [21, 42], // bottom-center
-    popupAnchor: [0, -42],
+    iconAnchor: [21, 42],
   });
 }
 
@@ -88,7 +80,8 @@ const icons = {
   airport: createCircleIcon("/departures.png"),
 };
 
-function radialPositions(center, count, radius = 35) {
+/* ================= HELPERS ================= */
+function radialPositions(center, count, radius = 40) {
   const [cy, cx] = center;
   return Array.from({ length: count }, (_, i) => {
     const angle = (2 * Math.PI * i) / count;
@@ -99,8 +92,7 @@ function radialPositions(center, count, radius = 35) {
 /* ================= DATA ================= */
 const DATA = Object.fromEntries(
   ATOLLS.map((a) => {
-    const positions = radialPositions(a.pos, 5, 40); // 🔥 dynamic
-
+    const pos = radialPositions(a.pos, 5);
     return [
       a.id,
       {
@@ -108,40 +100,40 @@ const DATA = Object.fromEntries(
           {
             id: 1,
             name: `${a.name} Resort`,
-            pos: positions[0],
             desc: "Luxury island resort",
+            pos: pos[0],
           },
         ],
         spa: [
           {
             id: 1,
             name: `${a.name} Spa`,
-            pos: positions[1],
             desc: "Wellness & relaxation",
+            pos: pos[1],
           },
         ],
         hospital: [
           {
             id: 1,
             name: `${a.name} Medical Center`,
-            pos: positions[2],
             desc: "Emergency services",
+            pos: pos[2],
           },
         ],
         pub: [
           {
             id: 1,
             name: `${a.name} Lagoon Pub`,
-            pos: positions[3],
-            desc: "Drinks & nightlife",
+            desc: "Nightlife & drinks",
+            pos: pos[3],
           },
         ],
         airport: [
           {
             id: 1,
             name: `${a.name} Airport`,
-            pos: positions[4],
             desc: "Main transport hub",
+            pos: pos[4],
           },
         ],
       },
@@ -152,9 +144,10 @@ const DATA = Object.fromEntries(
 /* ================= APP ================= */
 export default function App() {
   const [category, setCategory] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   return (
-    <div className="flex h-screen w-screen relative bg-gradient-to-br from-sky-100 to-blue-200">
+    <div className="h-screen w-screen relative">
       <MapContainer
         crs={L.CRS.Simple}
         bounds={IMAGE_BOUNDS}
@@ -164,7 +157,6 @@ export default function App() {
       >
         <ImageOverlay url="/Maldives-3D-Final.jpg" bounds={IMAGE_BOUNDS} />
 
-        {/* ✅ ALL ICONS ALWAYS VISIBLE */}
         {category &&
           ATOLLS.flatMap((atoll) =>
             DATA[atoll.id][category].map((item) => (
@@ -172,38 +164,63 @@ export default function App() {
                 key={`${atoll.id}-${item.id}`}
                 position={item.pos}
                 icon={icons[category]}
-              >
-                <Popup closeButton={false} autoPan>
-                  <div className="card">
-                    <div className="card__border"></div>
-
-                    <div className="card_title__container">
-                      <p className="card_title">{item.name}</p>
-                      <p className="card_paragraph">{item.desc}</p>
-                    </div>
-
-                    <hr className="line" />
-
-                    <ul className="card__list">
-                      <li className="card__list_item">
-                        <span className="card_paragraph">✓</span>
-                        <span className="card_paragraph">Premium Location</span>
-                      </li>
-                      <li className="card__list_item">
-                        <span className="card_paragraph">✓</span>
-                        <span className="card_paragraph">24/7 Service</span>
-                      </li>
-                    </ul>
-
-                    <button className="card_paragraph">Explore</button>
-                  </div>
-                </Popup>
-              </Marker>
+                eventHandlers={{
+                  click: () =>
+                    setSelectedItem({
+                      ...item,
+                      atoll: atoll.name,
+                      category,
+                    }),
+                }}
+              />
             ))
           )}
       </MapContainer>
 
-      {/* CATEGORY CARDS */}
+      {/* ================= GLASS POPUP ================= */}
+      {selectedItem && (
+        <div
+          onClick={() => setSelectedItem(null)}
+          className="fixed inset-0 z-[1000] bg-black/30 backdrop-blur-sm flex items-center justify-center"
+        >
+          <div onClick={(e) => e.stopPropagation()} className="card">
+            {/* Rotating Neon Border */}
+            <div className="card__border"></div>
+
+            <div className="card_title__container">
+              <p className="card_title">{selectedItem.name}</p>
+              <p className="card_paragraph">{selectedItem.atoll}</p>
+            </div>
+
+            <hr className="line" />
+
+            <p className="card_paragraph">{selectedItem.desc}</p>
+
+            <ul className="card__list">
+              <li className="card__list_item">
+                <span className="check">
+                  <svg className="check_svg" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                </span>
+                <span className="list_text">Premium Location</span>
+              </li>
+
+              <li className="card__list_item">
+                <span className="check">
+                  <svg className="check_svg" viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                </span>
+                <span className="list_text">24/7 Service</span>
+              </li>
+            </ul>
+
+            <button className="button">Explore</button>
+          </div>
+        </div>
+      )}
+  {/* CATEGORY CARDS */}
       <div className="absolute bottom-6 left-0 right-0 z-[999] px-4 pointer-events-none">
         <div className="cards-glass-wrapper mx-auto pointer-events-auto">
           <div className="grid grid-cols-5 gap-[10px] place-content-center">

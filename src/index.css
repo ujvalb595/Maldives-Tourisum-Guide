@@ -2,68 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Leaflet map must have height */
+/* ================= Leaflet ================= */
 .leaflet-container {
   width: 100%;
   height: 100%;
 }
 
-.leaflet-popup {
-  overflow: visible !important;
-}
-
-.leaflet-popup-content-wrapper {
-  overflow: visible !important;
-}
-.leaflet-popup-content {
-  margin: 0;
-}
-
-.card_title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-}
-
-
-.card_paragraph {
-  font-size: 1rem;
-  color: #ffffff;
-}
-
-.card {
-  background-color: rgba(15, 23, 42, 0.55);
-
-  background-image: radial-gradient(
-      at 88% 40%,
-      rgba(15, 23, 42, 0.8) 0px,
-      transparent 85%
-    ),
-    radial-gradient(at 49% 30%, rgba(15, 23, 42, 0.8) 0px, transparent 85%),
-    radial-gradient(at 14% 26%, rgba(15, 23, 42, 0.8) 0px, transparent 85%),
-    radial-gradient(at 0% 64%, rgba(2, 132, 199, 0.6) 0px, transparent 85%),
-    radial-gradient(at 41% 94%, rgba(14, 165, 233, 0.6) 0px, transparent 85%),
-    radial-gradient(at 100% 99%, rgba(3, 105, 161, 0.6) 0px, transparent 85%);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.leaflet-popup-tip {
-  background: transparent;
-}
-
-/* ===== Glass Container ===== */
+/* ================= Glass Bottom Container ================= */
 .bottom-container {
   margin: 0 auto;
   text-align: center;
 }
+
 .cards-glass-wrapper {
   width: 60%;
-  padding: 8px 12px; /* ⬅ reduced padding */
+  padding: 8px 12px;
   border-radius: 24px;
   display: block;
+
   background: linear-gradient(
     45deg,
     rgb(142, 197, 252) 0%,
@@ -72,26 +28,32 @@
     rgb(193, 210, 255) 75%,
     rgb(224, 195, 255) 100%
   );
+
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
+
   border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35),
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.35),
     inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
-/* ===== Premium Card (Compact Map Version) ===== */
+/* ================= Premium Category Cards ================= */
 .premium-card {
   position: relative;
-  padding: 10px; /* ⬅ reduced */
-  border-radius: 14px; /* ⬅ smaller radius */
-  min-height: 80px; /* ⬅ NEW (controls height) */
+  padding: 10px;
+  border-radius: 14px;
+  min-height: 80px;
+
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.22),
     rgba(255, 255, 255, 0.1)
   );
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+
   border: 1px solid rgba(255, 255, 255, 0.35);
   cursor: pointer;
   text-align: center;
@@ -105,12 +67,14 @@
   position: absolute;
   inset: -1px;
   border-radius: inherit;
+
   background: linear-gradient(
     120deg,
     transparent,
     rgba(99, 102, 241, 0.5),
     transparent
   );
+
   opacity: 0;
   transition: opacity 0.35s ease;
 }
@@ -121,18 +85,20 @@
 
 .premium-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 35px rgba(99, 102, 241, 0.35),
+  box-shadow:
+    0 18px 35px rgba(99, 102, 241, 0.35),
     inset 0 0 12px rgba(255, 255, 255, 0.35);
 }
 
 /* Active */
 .premium-card.active {
-  box-shadow: 0 0 25px rgba(99, 102, 241, 0.8),
+  box-shadow:
+    0 0 25px rgba(99, 102, 241, 0.8),
     inset 0 0 15px rgba(99, 102, 241, 0.5);
   border-color: rgba(99, 102, 241, 0.8);
 }
 
-/* ===== Image Full Card ===== */
+/* ================= Image Cards ================= */
 .premium-card-image {
   position: absolute;
   inset: 0;
@@ -145,22 +111,23 @@
   object-fit: cover;
 }
 
-/* Dark overlay for readability */
 .premium-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.25));
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.25)
+  );
   z-index: 1;
 }
 
-/* Text content on image */
 .premium-card-content {
   position: relative;
   z-index: 2;
   color: #fff;
 }
 
-/* Text tweaks */
 .premium-card-title {
   font-weight: 600;
   font-size: 12px;
@@ -170,4 +137,168 @@
 .premium-card-count {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.85);
+}
+
+
+
+
+/* ================= Popup Styling ================= */
+
+/* From Uiverse.io by iconicchandu */ 
+.card {
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(240, 15%, 9%);
+  --paragraph: hsl(0, 0%, 83%);
+  --line: hsl(240, 9%, 17%);
+  --primary: hsl(189, 92%, 58%);
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1rem;
+  width: 19rem;
+  background-color: hsla(240, 15%, 9%, 1);
+  background-image: radial-gradient(
+      at 88% 40%,
+      hsla(240, 15%, 9%, 1) 0px,
+      transparent 85%
+    ),
+    radial-gradient(at 49% 30%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 14% 26%, hsla(240, 15%, 9%, 1) 0px, transparent 85%),
+    radial-gradient(at 0% 64%, hsl(189, 99%, 26%) 0px, transparent 85%),
+    radial-gradient(at 41% 94%, hsl(189, 97%, 36%) 0px, transparent 85%),
+    radial-gradient(at 100% 99%, hsl(188, 94%, 13%) 0px, transparent 85%);
+
+  border-radius: 1rem;
+  box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.25) inset;
+}
+
+.card .card__border {
+  overflow: hidden;
+  pointer-events: none;
+
+  position: absolute;
+  z-index: -10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: calc(100% + 3px);
+  height: calc(100% + 3px);
+  background-image: linear-gradient(
+    0deg,
+    hsl(0, 0%, 100%) -50%,
+    hsl(0, 0%, 40%) 100%
+  );
+
+  border-radius: 1rem;
+}
+
+.card .card__border::before {
+  content: "";
+  pointer-events: none;
+
+  position: fixed;
+  z-index: 200;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%), rotate(0deg);
+  transform-origin: left;
+
+  width: 200%;
+  height: 10rem;
+  background-image: linear-gradient(
+    0deg,
+    hsla(0, 0%, 100%, 0) 0%,
+    hsl(189, 100%, 50%) 40%,
+    hsl(189, 100%, 50%) 60%,
+    hsla(0, 0%, 40%, 0) 100%
+  );
+
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card .card_title__container .card_title {
+  font-size: 1rem;
+  color: var(--white);
+}
+
+.card .card_title__container .card_paragraph {
+  margin-top: 0.25rem;
+  width: 65%;
+
+  font-size: 0.5rem;
+  color: var(--paragraph);
+}
+
+.card .line {
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--line);
+
+  border: none;
+}
+
+.card .card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card .card__list .card__list_item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card .card__list .card__list_item .check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--primary);
+
+  border-radius: 50%;
+}
+
+.card .card__list .card__list_item .check .check_svg {
+  width: 0.75rem;
+  height: 0.75rem;
+
+  fill: var(--black);
+}
+
+.card .card__list .card__list_item .list_text {
+  font-size: 0.75rem;
+  color: var(--white);
+}
+
+.card .button {
+  cursor: pointer;
+
+  padding: 0.5rem;
+  width: 100%;
+  background-image: linear-gradient(
+    0deg,
+    hsl(189, 92%, 58%),
+    hsl(189, 99%, 26%) 100%
+  );
+
+  font-size: 0.75rem;
+  color: var(--white);
+
+  border: 0;
+  border-radius: 9999px;
+  box-shadow: inset 0 -2px 25px -4px var(--white);
 }
