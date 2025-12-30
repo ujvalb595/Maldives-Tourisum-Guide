@@ -258,3 +258,5 @@ function CategoryCard({ label, image, onClick, active }) {
     </div>
   );
 }
+
+
