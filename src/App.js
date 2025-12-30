@@ -109,7 +109,7 @@ const DATA = Object.fromEntries(
             id: 1,
             name: `${a.name} Spa`,
             desc: "Wellness & relaxation",
-            pos: pos[1],
+            pos: pos[0],
           },
         ],
         hospital: [
@@ -117,7 +117,7 @@ const DATA = Object.fromEntries(
             id: 1,
             name: `${a.name}`,
             desc: "24/7 medical care with emergency, outpatient, and diagnostic services provided by experienced healthcare professionals.",
-            pos: pos[2],
+            pos: pos[0],
           },
         ],
         pub: [
@@ -125,7 +125,7 @@ const DATA = Object.fromEntries(
             id: 1,
             name: `${a.name} Lagoon Pub`,
             desc: "Nightlife & drinks",
-            pos: pos[3],
+            pos: pos[0],
           },
         ],
         airport: [
@@ -133,7 +133,7 @@ const DATA = Object.fromEntries(
             id: 1,
             name: `${a.name} Airport`,
             desc: "Main transport hub",
-            pos: pos[4],
+            pos: pos[0],
           },
         ],
       },
