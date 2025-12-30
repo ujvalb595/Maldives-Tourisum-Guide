@@ -115,8 +115,8 @@ const DATA = Object.fromEntries(
         hospital: [
           {
             id: 1,
-            name: `${a.name} Medical Center`,
-            desc: "Emergency services",
+            name: `${a.name}`,
+            desc: "24/7 medical care with emergency, outpatient, and diagnostic services provided by experienced healthcare professionals.",
             pos: pos[2],
           },
         ],
@@ -178,49 +178,49 @@ export default function App() {
       </MapContainer>
 
       {/* ================= GLASS POPUP ================= */}
+
       {selectedItem && (
         <div
           onClick={() => setSelectedItem(null)}
           className="fixed inset-0 z-[1000] bg-black/30 backdrop-blur-sm flex items-center justify-center"
         >
-          <div onClick={(e) => e.stopPropagation()} className="card">
-            {/* Rotating Neon Border */}
-            <div className="card__border"></div>
+          <div onClick={(e) => e.stopPropagation()} className="parent">
+            {/* CARD */}
+            <div className="card">
+              <button
+                onClick={() => setSelectedItem(null)}
+                className="close-btn"
+              >
+                ✕
+              </button>
+              {/* GLASS LAYER */}
+              <div className="glass"></div>
 
-            <div className="card_title__container">
-              <p className="card_title">{selectedItem.name}</p>
-              <p className="card_paragraph">{selectedItem.atoll}</p>
+              {/* CONTENT */}
+              <div className="content">
+                <span className="title">{selectedItem.name}</span>
+                <span className="text">{selectedItem.desc}</span>
+                {/* <span className="text">{selectedItem.atoll}</span> */}
+              </div>
+
+              {/* LOGO CIRCLES (NEEDED FOR EFFECT) */}
+              <div className="logo">
+                <span className="circle circle1"></span>
+                <span className="circle circle2"></span>
+                <span className="circle circle3"></span>
+                <span className="circle circle4"></span>
+                <span className="circle circle5">
+                  <svg className="svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                  </svg>
+                </span>
+              </div>
             </div>
-
-            <hr className="line" />
-
-            <p className="card_paragraph">{selectedItem.desc}</p>
-
-            <ul className="card__list">
-              <li className="card__list_item">
-                <span className="check">
-                  <svg className="check_svg" viewBox="0 0 24 24">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </span>
-                <span className="list_text">Premium Location</span>
-              </li>
-
-              <li className="card__list_item">
-                <span className="check">
-                  <svg className="check_svg" viewBox="0 0 24 24">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </span>
-                <span className="list_text">24/7 Service</span>
-              </li>
-            </ul>
-
-            <button className="button">Explore</button>
           </div>
         </div>
       )}
-  {/* CATEGORY CARDS */}
+
+      {/* CATEGORY CARDS */}
       <div className="absolute bottom-6 left-0 right-0 z-[999] px-4 pointer-events-none">
         <div className="cards-glass-wrapper mx-auto pointer-events-auto">
           <div className="grid grid-cols-5 gap-[10px] place-content-center">
@@ -258,5 +258,3 @@ function CategoryCard({ label, image, onClick, active }) {
     </div>
   );
 }
-
-
