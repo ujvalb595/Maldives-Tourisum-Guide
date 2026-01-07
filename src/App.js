@@ -67,9 +67,17 @@ function createCircleIcon(iconUrl) {
         display:flex;
         align-items:center;
         justify-content:center;
-        box-shadow:0 6px 14px rgba(0,0,0,0.25);
+        border-width: 2px;
+    border-color: #fff;
+    background-color: hsl(var(--glass) / 0.2);
+    --tw-backdrop-blur: blur(50px);
+    transition-duration: 300ms;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation: marker-pulse 2s ease-in-out infinite;
+    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
       ">
-        <img src="${iconUrl}" style="width:22px;height:22px;" />
+        <img src="${iconUrl}" style="width:20px;height:20px;" />
       </div>
     `,
     iconSize: [42, 42],
@@ -226,7 +234,7 @@ export default function App() {
       )}
 
       {/* CATEGORY CARDS */}
-      <div className="absolute bottom-6 left-0 right-0 z-[999] px-4 pointer-events-none">
+      <div className="absolute text-center bottom-6 left-0 right-0 z-[999] px-4 pointer-events-none">
         <div className="cards-glass-wrapper mx-auto pointer-events-auto">
           <div className="grid grid-cols-5 gap-[10px] place-content-center">
             {CATEGORIES.map((cat) => (
@@ -251,10 +259,10 @@ function CategoryCard({ label, icons, onClick, active }) {
     <div
       onClick={onClick}
       className={`premium-card ${active ? "active" : ""}`}
-      style={{ height: "130px", maxWidth: "130px" }}
+      style={{ height: "130px", width: "130px" }}
     >
       {/* ICON ONLY */}
-      <div className="flex items-center justify-center">
+      <div className="flex premium-card-icon items-center justify-center">
         <img
           src={icons}
           alt={label}
