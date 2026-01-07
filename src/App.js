@@ -236,7 +236,7 @@ export default function App() {
       {/* CATEGORY CARDS */}
       <div className="absolute text-center bottom-6 left-0 right-0 z-[999] px-4 pointer-events-none">
         <div className="cards-glass-wrapper mx-auto pointer-events-auto">
-          <div className="grid grid-cols-5 gap-[10px] place-content-center">
+          <div className="grid grid-cols-5 place-content-center">
             {CATEGORIES.map((cat) => (
               <CategoryCard
                 key={cat.id}
