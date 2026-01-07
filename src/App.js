@@ -11,14 +11,14 @@ const IMAGE_BOUNDS = [
 
 /* ================= ATOLLS ================= */
 const ATOLLS = [
-  { id: "north-male", name: "North Malé Atoll", pos: [210, 1450] },
-  { id: "south-male", name: "South Malé Atoll", pos: [180, 1770] },
-  { id: "ari", name: "Ari Atoll", pos: [510, 1150] },
-  { id: "baa", name: "Baa Atoll", pos: [300, 1000] },
-  { id: "raa", name: "Raa Atoll", pos: [440, 1350] },
-  { id: "dhaalu", name: "Dhaalu Atoll", pos: [460, 660] },
-  { id: "laamu", name: "Laamu Atoll", pos: [660, 860] },
-  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [780, 450] },
+  { id: "north-male", name: "North Malé Atoll", pos: [270, 1390] },
+  { id: "south-male", name: "South Malé Atoll", pos: [250, 1700] },
+  { id: "ari", name: "Ari Atoll", pos: [560, 1100] },
+  { id: "baa", name: "Baa Atoll", pos: [360, 1000] },
+  { id: "raa", name: "Raa Atoll", pos: [470, 1300] },
+  { id: "dhaalu", name: "Dhaalu Atoll", pos: [480, 660] },
+  { id: "laamu", name: "Laamu Atoll", pos: [680, 830] },
+  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [890, 430] },
 ];
 
 /* ================= CATEGORIES ================= */
