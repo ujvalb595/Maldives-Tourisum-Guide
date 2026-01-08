@@ -218,8 +218,6 @@ export default function App() {
 
               {/* LOGO CIRCLES (NEEDED FOR EFFECT) */}
               <div className="logo">
-                <span className="circle circle1"></span>
-                <span className="circle circle2"></span>
                 <span className="circle circle3"></span>
                 <span className="circle circle4"></span>
                 <span className="circle circle5">
