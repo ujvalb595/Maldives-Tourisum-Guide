@@ -14,11 +14,11 @@ const ATOLLS = [
   { id: "north-male", name: "North Malé Atoll", pos: [470, 1720] },
   { id: "south-male", name: "South Malé Atoll", pos: [360, 1420] },
   { id: "ari", name: "Ari Atoll", pos: [560, 1100] },
-  { id: "baa", name: "Baa Atoll", pos: [360, 1070] },
+  { id: "baa", name: "Baa Atoll", pos: [410, 980] },
   { id: "raa", name: "Raa Atoll", pos: [470, 1300] },
-  { id: "dhaalu", name: "Dhaalu Atoll", pos: [480, 660] },
+  { id: "dhaalu", name: "Dhaalu Atoll", pos: [430, 690] },
   { id: "laamu", name: "Laamu Atoll", pos: [700, 1300] },
-  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [890, 430] },
+  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [300, 250] },
 ];
 
 /* ================= CATEGORIES ================= */
