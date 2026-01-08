@@ -18,7 +18,7 @@ const ATOLLS = [
   { id: "raa", name: "Raa Atoll", pos: [470, 1300] },
   { id: "dhaalu", name: "Dhaalu Atoll", pos: [430, 690] },
   { id: "laamu", name: "Laamu Atoll", pos: [700, 1300] },
-  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [300, 250] },
+  { id: "gaafu", name: "Gaafu Alif Atoll", pos: [300, 270] },
 ];
 
 /* ================= CATEGORIES ================= */
