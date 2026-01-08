@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css";
 /* ================= IMAGE MAP CONFIG ================= */
 const IMAGE_BOUNDS = [
   [0, 0],
-  [1000, 2000],
+  [1440, 3440],
 ];
 
 /* ================= ATOLLS ================= */
