@@ -448,7 +448,7 @@ backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-
   transform-style: preserve-3d;
   position: absolute;
   inset: 8px;
-  border-radius: 55px;
+  border-radius: 45px;
   border-top-right-radius: 60%;
   background: linear-gradient(
     0deg,
