@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { MapContainer, Marker, ImageOverlay } from "react-leaflet";
+import { MapContainer, ImageOverlay } from "react-leaflet";
 import L, { icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
+import ZoomMarker from "./Components/ZoomMarker";
 
 /* ================= IMAGE MAP CONFIG ================= */
 const IMAGE_BOUNDS = [
@@ -173,18 +174,17 @@ export default function App() {
         {category &&
           ATOLLS.flatMap((atoll) =>
             DATA[atoll.id][category].map((item) => (
-              <Marker
+              <ZoomMarker
                 key={`${atoll.id}-${item.id}`}
                 position={item.pos}
                 icon={icons[category]}
-                eventHandlers={{
-                  click: () =>
-                    setSelectedItem({
-                      ...item,
-                      atoll: atoll.name,
-                      category,
-                    }),
-                }}
+                onClick={() =>
+                  setSelectedItem({
+                    ...item,
+                    atoll: atoll.name,
+                    category,
+                  })
+                }
               />
             ))
           )}

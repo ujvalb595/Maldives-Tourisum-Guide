@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import { ATOLL_CENTER } from "../Data/locations";
 import PlusMarker from "./PlusMarker";
@@ -11,6 +11,24 @@ const defaultIcon = new L.Icon({
   iconSize: [25, 41],
   iconAnchor: [12, 41]
 });
+
+function MapController({ onIconClick }) {
+  const map = useMap();
+
+  const handleIconClick = () => {
+    const currentZoom = map.getZoom();
+    const targetZoom = currentZoom + 3;
+    map.flyTo(ATOLL_CENTER, targetZoom);
+    map.once('zoomend', onIconClick);
+  };
+
+  return (
+    <PlusMarker
+      position={ATOLL_CENTER}
+      onClick={handleIconClick}
+    />
+  );
+}
 
 export default function MapView({ category, locations, showMarkers, setShowMarkers }) {
   return (
@@ -25,7 +43,13 @@ export default function MapView({ category, locations, showMarkers, setShowMarke
       {category && !showMarkers && (
         <PlusMarker
           position={ATOLL_CENTER}
-          onClick={() => setShowMarkers(true)}
+          onClick={() => {
+            const map = useMap();
+            const currentZoom = map.getZoom();
+            const targetZoom = currentZoom + 3;
+            map.flyTo(ATOLL_CENTER, targetZoom);
+            map.once('zoomend', () => setShowMarkers(true));
+          }}
         />
       )}
 
